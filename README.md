@@ -2,49 +2,30 @@
 
 <img src="icc.png" width="128">
 
-# InkCanvasForClass
+# InkCanvasForClass-legacy
 
 Elegant by Default. Based on `ChangSakura/InkCanvas` .
 
 **這將會是最後一次基於InkCanvas控件的倔強**
 
 [![UPSTREAM](https://img.shields.io/badge/UpStream-ChangSakura%2FInk--Canvas-red.svg "LICENSE")](https://github.com/ChangSakura/Ink-Canvas)
-![Gitea Last Commit](https://img.shields.io/gitea/last-commit/kriastans/InkCanvasForClass?gitea_url=https%3A%2F%2Fgitea.bliemhax.com%2F)
+![Gitea Last Commit](https://img.shields.io/gitlab/last-commit/62994318)
 [![LICENSE](https://img.shields.io/badge/License-GPL--3.0-red.svg "LICENSE")](https://gitea.bliemhax.com/kriastans/InkCanvasForClass/src/branch/master/LICENSE)
-[![交流群](https://img.shields.io/badge/-%E4%BA%A4%E6%B5%81%E7%BE%A4%20825759306-blue?style=flat&logo=TencentQQ)]()
-[![Telegram](https://img.shields.io/badge/-Telegram%20@InkCanvasForClass-blue?style=flat&logo=Telegram)](https://t.me/InkCanvasForClass)
 
 ![Screenshot-1](./Images/icc1.png)
 ![Screenshot-2](./Images/icc2.png)
 
 </div>
 
-## 贊助支持
+## 这是旧版仓库
 
-我已註冊愛發電，感謝各位對icc的支持！[https://afdian.net/a/dubi906w](https://afdian.net/a/dubi906w)
-
-## 新網站即將上線！
-新網站即將上線，快來一起和InkCanvasForClass見證美好時刻吧！[點我訪問](https://icc.bliemhax.com/)
-
-## 嚴正聲明
-本產品與peppy的osu!以及其周邊項目和產品無任何關聯，該Logo僅供娛樂用，若有侵權，請聯繫Dev協商解決。
-
-## 公告
-该项目旨在为ICA提供更加舒适和易于使用的UI和用户体验，对于任何墨迹书写方面的Bug如果本人无法修复将不会被修复。
+**推荐大家用旧版（虽然本人不建议各位在正式环境用 icc，但是如果大家要用还是建议用这个。新版目前才起步，基本上处于不可用的状态，因此维护一个旧版的仓库）。该仓库基于 0610 的分支开发，会修复部分严重的 Bug、优化整体体验、添加小部分新功能和优化到该版本分支上。**
 
 ## 前言
 使用和分發本軟體前，請您應當且務必知曉相關開源協議，本軟體基於 https://github.com/ChangSakura/Ink-Canvas 修改而成，而ICA又基於 https://github.com/WXRIW/Ink-Canvas 修改而成，增添了包括但不限於隱藏到側邊欄等功能，更改了相關UI和軟體操作邏輯。對於墨跡書寫功能以及ICA獨有功能的相關 issue 提出，應優先查閱 https://github.com/WXRIW/Ink-Canvas/issues 。
 
 [直接下載](https://gitea.bliemhax.com/kriastans/InkCanvasForClass/releases "Latest Releases")
 ——以壓縮檔案形式存儲，便攜版可直接啟動，默認配置適配絕大多數紅外觸摸框的設置。
-
-> ⚠️注意：此項目仍在開發中，只會在發佈正式發行版時提供Release。您可以自行使用VS2022編譯打包後自行使用
-
-## 特性
-1. Support Active Pen (支持壓感)
-2. 工具欄顯示了每個功能的文字描述
-3. 添加了調色盤的顏色
-4. 添加了熒光筆支持
 
 ## 提示
 - 對新功能的有效意見和合理建議，開發者會適時回復並進行開發。本軟體並非商業性質軟體，請勿催促開發者，耐心才能讓功能更少 BUG、更加穩定。
@@ -74,25 +55,3 @@ ICC 可以支持 WPS，但目前無法同時支持 MSOffice 和 WPS。若要啟�
 請檢查你的電腦上是否安裝了 `.Net Framework 4.7.2` 或更高版本。若沒有，請前往官網下載  
 
 > 遇到各種奇葩逗比問題請重啟應用程式，如果不行請反饋給Dev解決！
-
-## 如何聯繫我
-1. QQ群聊：825759306
-2. Telegram頻道：@InkCanvasForClass
-
-## 特別鳴謝
-
-<table>
-    <tbody>
-        <tr>
-            <td align="center" valign="top" width="14.28%"><a href="https://github.com/ChangSakura"><img
-                        src="https://avatars.githubusercontent.com/u/90511645?v=4" width="100px;"
-                        alt="HelloWRC" /><br /><sub><b>ChangSakura</b></sub></a></td>
-            <td align="center" valign="top" width="14.28%"><a href="https://github.com/WXRIW"><img
-                        src="https://avatars.githubusercontent.com/u/62491584?v=4" width="100px;"
-                        alt="Doctor-yoi" /><br /><sub><b>WXRIW</b></sub></a></td>
-            <td align="center" valign="top" width="14.28%"><a href="https://github.com/Alan-CRL"><img
-                        src="https://avatars.githubusercontent.com/u/92425617?v=4" width="100px;"
-                        alt="姜胤" /><br /><sub><b>Alan-CRL</b></sub></a></td>
-        </tr>
-    </tbody>
-</table>

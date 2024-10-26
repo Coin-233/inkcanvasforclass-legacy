@@ -2249,12 +2249,7 @@
 
         <!--// 黑/白 板幕布 //-->
         <Grid Name="GridBackgroundCoverHolder">
-            <Grid Name="GridBackgroundCover" Visibility="Collapsed" Background="#1F1F1F">
-                <Image Name="ICCWaterMarkWhite" Source="Resources/Icons-png/icc-transparent.png" Width="648"
-                       Height="648" Opacity="0.035" />
-                <Image Name="ICCWaterMarkDark" Source="Resources/Icons-png/icc-transparent-dark.png" Width="648"
-                       Height="648" Opacity="0.055" />
-            </Grid>
+            <Grid Name="GridBackgroundCover" Visibility="Collapsed" Background="#1F1F1F"/>
         </Grid>
         <Grid Name="GridTransparencyFakeBackground" Opacity="0" />
         <Label Name="Label" Visibility="Collapsed" Foreground="Gray" Content="0" />

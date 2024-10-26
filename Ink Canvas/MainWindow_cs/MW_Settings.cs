@@ -1479,7 +1479,7 @@ namespace Ink_Canvas {
             }
             catch { }
 
-            ShowNotification("设置已重置为默认推荐设置~");
+            ShowNotificationAsync("设置已重置为默认推荐设置~");
         }
 
         private async void SpecialVersionResetToSuggestion_Click() {
@@ -1641,12 +1641,6 @@ namespace Ink_Canvas {
             SaveSettingsToFile();
         }
 
-        private void ToggleSwitchIsSecondConfimeWhenShutdownApp_Toggled(object sender, RoutedEventArgs e) {
-            if (!isLoaded) return;
-            Settings.Advanced.IsSecondConfirmWhenShutdownApp = ToggleSwitchIsSecondConfimeWhenShutdownApp.IsOn;
-            SaveSettingsToFile();
-        }
-
         #endregion
 
         #region RandSettings
@@ -1686,7 +1680,7 @@ namespace Ink_Canvas {
         }
 
         private void HyperlinkSourceToICCRepository_Click(object sender, RoutedEventArgs e) {
-            Process.Start("https://gitea.bliemhax.com/kriastans/InkCanvasForClass");
+            Process.Start("https://gitlab.com/dubi906w-university/icc/inkcanvasforclass-legacy");
             HideSubPanels();
         }
 

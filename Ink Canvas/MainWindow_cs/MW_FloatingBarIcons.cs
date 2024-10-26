@@ -576,7 +576,7 @@ namespace Ink_Canvas {
                 }
 
                 if (Settings.Automation.IsAutoSaveStrokesAtClear &&
-                    inkCanvas.Strokes.Count > Settings.Automation.MinimumAutomationStrokeNumber) SaveScreenShot(true);
+                    inkCanvas.Strokes.Count > Settings.Automation.MinimumAutomationStrokeNumber) SaveScreenshot(true);
 
                 if (BtnPPTSlideShowEnd.Visibility == Visibility.Collapsed)
                     new Thread(new ThreadStart(() => {
@@ -650,9 +650,9 @@ namespace Ink_Canvas {
                 if (Settings.Automation.IsAutoSaveStrokesAtClear &&
                     inkCanvas.Strokes.Count > Settings.Automation.MinimumAutomationStrokeNumber) {
                     if (BtnPPTSlideShowEnd.Visibility == Visibility.Visible)
-                        SaveScreenShot(true, $"{pptName}/{previousSlideID}_{DateTime.Now:HH-mm-ss}");
+                        SavePPTScreenshot($"{pptName}/{previousSlideID}_{DateTime.Now:HH-mm-ss}");
                     else
-                        SaveScreenShot(true);
+                        SaveScreenshot(true);
                 }
 
                 BtnClear_Click(null, null);
@@ -1206,9 +1206,9 @@ namespace Ink_Canvas {
             // 切换前自动截图保存墨迹
             if (inkCanvas.Strokes.Count > 0 &&
                 inkCanvas.Strokes.Count > Settings.Automation.MinimumAutomationStrokeNumber) {
-                if (BtnPPTSlideShowEnd.Visibility == Visibility.Visible)
-                    SaveScreenShot(true, $"{pptName}/{previousSlideID}_{DateTime.Now:HH-mm-ss}");
-                else SaveScreenShot(true);
+                if (BtnPPTSlideShowEnd.Visibility == Visibility.Visible) SavePPTScreenshot($"{pptName}/{previousSlideID}_{DateTime.Now:HH-mm-ss}");
+                else SaveScreenshot(true);
+
             }
 
             if (BtnPPTSlideShowEnd.Visibility != Visibility.Visible) {
@@ -1812,7 +1812,7 @@ namespace Ink_Canvas {
                         if (inkCanvas.Strokes.Count > 0) {
                             if (Settings.Automation.IsAutoSaveStrokesAtClear && inkCanvas.Strokes.Count >
                                 Settings.Automation.MinimumAutomationStrokeNumber)
-                                SaveScreenShot(true);
+                                SaveScreenshot(true);
 
                             //BtnClear_Click(null, null);
                         }
@@ -1826,7 +1826,7 @@ namespace Ink_Canvas {
                         if (inkCanvas.Strokes.Count > 0) {
                             if (Settings.Automation.IsAutoSaveStrokesAtClear && inkCanvas.Strokes.Count >
                                 Settings.Automation.MinimumAutomationStrokeNumber)
-                                SaveScreenShot(true);
+                                SaveScreenshot(true);
 
                             //BtnClear_Click(null, null);
                         }

@@ -105,7 +105,7 @@ namespace Ink_Canvas {
             Trace.WriteLine("113223234");
 
             if (Settings.Automation.IsAutoSaveStrokesAtClear &&
-                inkCanvas.Strokes.Count > Settings.Automation.MinimumAutomationStrokeNumber) SaveScreenShot(true);
+                inkCanvas.Strokes.Count > Settings.Automation.MinimumAutomationStrokeNumber) SaveScreenshot(true);
             if (CurrentWhiteboardIndex >= WhiteboardTotalCount) {
                 BtnWhiteBoardAdd_Click(sender, e);
                 return;
@@ -124,7 +124,7 @@ namespace Ink_Canvas {
         private void BtnWhiteBoardAdd_Click(object sender, EventArgs e) {
             if (WhiteboardTotalCount >= 99) return;
             if (Settings.Automation.IsAutoSaveStrokesAtClear &&
-                inkCanvas.Strokes.Count > Settings.Automation.MinimumAutomationStrokeNumber) SaveScreenShot(true);
+                inkCanvas.Strokes.Count > Settings.Automation.MinimumAutomationStrokeNumber) SaveScreenshot(true);
             SaveStrokes();
             ClearStrokes(true);
 
@@ -162,71 +162,93 @@ namespace Ink_Canvas {
             if (WhiteboardTotalCount < 99) BtnWhiteBoardAdd.IsEnabled = true;
         }
 
+        private bool _whiteboardModePreviousPageButtonEnabled = false;
+        private bool _whiteboardModeNextPageButtonEnabled = false;
+        private bool _whiteboardModeNewPageButtonEnabled = false;
+        private bool _whiteboardModeNewPageButtonMerged = false;
+
+        public bool WhiteboardModePreviousPageButtonEnabled {
+            get => _whiteboardModePreviousPageButtonEnabled;
+            set {
+                _whiteboardModePreviousPageButtonEnabled = value;
+                var geo = new GeometryDrawing[]
+                    { BtnLeftWhiteBoardSwitchPreviousGeometry, BtnRightWhiteBoardSwitchPreviousGeometry };
+                var label = new TextBlock[]
+                    { BtnLeftWhiteBoardSwitchPreviousLabel, BtnRightWhiteBoardSwitchPreviousLabel };
+                var border = new Border[]
+                    { BtnWhiteBoardSwitchPreviousL, BtnWhiteBoardSwitchPreviousR };
+                foreach (var gd in geo)
+                    gd.Brush = new SolidColorBrush(Color.FromArgb((byte)(value ? 255 : 127), 24, 24, 27));
+                foreach (var tb in label) tb.Opacity = value ? 1 : 0.5;
+                foreach (var bd in border) bd.IsHitTestVisible = value;
+            }
+        }
+
+        public bool WhiteboardModeNextPageButtonEnabled {
+            get => _whiteboardModeNextPageButtonEnabled;
+            set {
+                _whiteboardModeNextPageButtonEnabled = value;
+                var geo = new GeometryDrawing[]
+                    { BtnLeftWhiteBoardSwitchNextGeometry, BtnRightWhiteBoardSwitchNextGeometry };
+                var label = new TextBlock[]
+                    { BtnLeftWhiteBoardSwitchNextLabel, BtnRightWhiteBoardSwitchNextLabel };
+                var border = new Border[]
+                    { BtnWhiteBoardSwitchNextL, BtnWhiteBoardSwitchNextR };
+                foreach (var gd in geo)
+                    gd.Brush = new SolidColorBrush(Color.FromArgb((byte)(value ? 255 : 127), 24, 24, 27));
+                foreach (var tb in label) tb.Opacity = value ? 1 : 0.5;
+                foreach (var bd in border) bd.IsHitTestVisible = value;
+            }
+        }
+
+        public bool WhiteboardModeNewPageButtonEnabled {
+            get => _whiteboardModeNewPageButtonEnabled;
+            set {
+                _whiteboardModeNewPageButtonEnabled = value;
+                var geo = new GeometryDrawing[]
+                { BtnWhiteboardAddGeometryLeft, BtnWhiteboardAddGeometryRight, BtnWhiteboardAddGeometryRightSecondary };
+                var label = new TextBlock[]
+                { BtnWhiteboardAddTextBlockLeft, BtnWhiteboardAddTextBlockRight, BtnWhiteboardAddTextBlockRightSecondary };
+                var border = new Border[]
+                { BtnWhiteboardAddLeft, BtnWhiteboardAddRight, BtnWhiteboardAddRightSecondary };
+                foreach (var gd in geo)
+                    gd.Brush = new SolidColorBrush(Color.FromArgb((byte)(value ? 255 : 127), 24, 24, 27));
+                foreach (var tb in label) tb.Opacity = value ? 1 : 0.5;
+                _whiteboardModeNewPageButtonMerged = value;
+                BtnWhiteBoardSwitchNextL.Visibility = value ? Visibility.Collapsed : Visibility.Visible;
+                BtnLeftPageListWB.CornerRadius = value ? new CornerRadius(0, 5, 5, 0) : new CornerRadius(0);
+                BtnWhiteBoardSwitchNextR.Visibility = value ? Visibility.Collapsed : Visibility.Visible;
+                BtnRightPageListWB.CornerRadius = value ? new CornerRadius(0, 5, 5, 0) : new CornerRadius(0);
+                BtnWhiteboardAddRightSecondary.Visibility = value ? Visibility.Visible : Visibility.Collapsed;
+                BtnWhiteboardAddRight.Visibility = value ? Visibility.Collapsed : Visibility.Visible;
+            }
+        }
+
+
+        public bool WhiteboardModeNewPageButtonMerged {
+            get => _whiteboardModeNewPageButtonMerged;
+            set {
+                _whiteboardModeNewPageButtonMerged = value;
+                BtnWhiteBoardSwitchNextL.Visibility = value ? Visibility.Collapsed : Visibility.Visible;
+                BtnWhiteBoardSwitchNextR.Visibility = value ? Visibility.Collapsed : Visibility.Visible;
+                BtnWhiteboardAddRightSecondary.Visibility = value ? Visibility.Visible : Visibility.Collapsed;
+                BtnWhiteboardAddRight.Visibility = value ? Visibility.Collapsed : Visibility.Visible;
+                BtnRightPageListWB.CornerRadius = value ? new CornerRadius(0, 5, 5, 0) : new CornerRadius(0);
+                BtnLeftPageListWB.CornerRadius = value ? new CornerRadius(0, 5, 5, 0) : new CornerRadius(0);
+            }
+        }
+
         private void UpdateIndexInfoDisplay() {
-            TextBlockWhiteBoardIndexInfo.Text =
+            BtnLeftPageListWBTextCount.Text =
+                $"{CurrentWhiteboardIndex}/{WhiteboardTotalCount}";
+            BtnRightPageListWBTextCount.Text =
                 $"{CurrentWhiteboardIndex}/{WhiteboardTotalCount}";
 
-            if (CurrentWhiteboardIndex == WhiteboardTotalCount) {
-                var newImageSource = new BitmapImage();
-                newImageSource.BeginInit();
-                newImageSource.UriSource = new Uri("/Resources/Icons-Fluent/ic_fluent_add_circle_24_regular.png",
-                    UriKind.RelativeOrAbsolute);
-                newImageSource.EndInit();
-                //BoardLeftPannelNextPage.Source = newImageSource;
-                //BoardRightPannelNextPage.Source = newImageSource;
-                //BoardRightPannelNextPageTextBlock.Text = "加页";
-                //BoardLeftPannelNextPageTextBlock.Text = "加页";
-            } else {
-                var newImageSource = new BitmapImage();
-                newImageSource.BeginInit();
-                newImageSource.UriSource =
-                    new Uri("/Resources/Icons-Fluent/ic_fluent_arrow_circle_right_24_regular.png",
-                        UriKind.RelativeOrAbsolute);
-                newImageSource.EndInit();
-                //BoardLeftPannelNextPage.Source = newImageSource;
-                //BoardRightPannelNextPage.Source = newImageSource;
-                //BoardRightPannelNextPageTextBlock.Text = "下一页";
-                //BoardLeftPannelNextPageTextBlock.Text = "下一页";
-            }
-
-            BtnWhiteBoardSwitchPrevious.IsEnabled = true;
-            BtnWhiteBoardSwitchNext.IsEnabled = true;
-
-            if (CurrentWhiteboardIndex == 1) {
-                BtnWhiteBoardSwitchPrevious.IsEnabled = false;
-                BtnLeftWhiteBoardSwitchPreviousGeometry.Brush = new SolidColorBrush(Color.FromArgb(127, 24, 24, 27));
-                BtnLeftWhiteBoardSwitchPreviousLabel.Opacity = 0.5;
-                BtnLeftWhiteBoardSwitchNextGeometry.Brush = new SolidColorBrush(Color.FromArgb(255, 24, 24, 27));
-                BtnLeftWhiteBoardSwitchNextLabel.Opacity = 1;
-
-                BtnRightWhiteBoardSwitchPreviousGeometry.Brush = new SolidColorBrush(Color.FromArgb(127, 24, 24, 27));
-                BtnRightWhiteBoardSwitchPreviousLabel.Opacity = 0.5;
-                BtnRightWhiteBoardSwitchNextGeometry.Brush = new SolidColorBrush(Color.FromArgb(255, 24, 24, 27));
-                BtnRightWhiteBoardSwitchNextLabel.Opacity = 1;
-            } else {
-                BtnLeftWhiteBoardSwitchPreviousGeometry.Brush = new SolidColorBrush(Color.FromArgb(255, 24, 24, 27));
-                BtnLeftWhiteBoardSwitchPreviousLabel.Opacity = 1;
-
-                BtnRightWhiteBoardSwitchPreviousGeometry.Brush = new SolidColorBrush(Color.FromArgb(255, 24, 24, 27));
-                BtnRightWhiteBoardSwitchPreviousLabel.Opacity = 1;
-
-                if (CurrentWhiteboardIndex == WhiteboardTotalCount) {
-                    BtnLeftWhiteBoardSwitchNextGeometry.Brush = new SolidColorBrush(Color.FromArgb(127, 24, 24, 27));
-                    BtnLeftWhiteBoardSwitchNextLabel.Opacity = 0.5;
-
-                    BtnRightWhiteBoardSwitchNextGeometry.Brush = new SolidColorBrush(Color.FromArgb(127, 24, 24, 27));
-                    BtnRightWhiteBoardSwitchNextLabel.Opacity = 0.5;
-                    BtnWhiteBoardSwitchNext.IsEnabled = false;
-                } else {
-                    BtnLeftWhiteBoardSwitchNextGeometry.Brush = new SolidColorBrush(Color.FromArgb(255, 24, 24, 27));
-                    BtnLeftWhiteBoardSwitchNextLabel.Opacity = 1;
-
-                    BtnRightWhiteBoardSwitchNextGeometry.Brush = new SolidColorBrush(Color.FromArgb(255, 24, 24, 27));
-                    BtnRightWhiteBoardSwitchNextLabel.Opacity = 1;
-                }
-            }
-
-            BtnWhiteBoardDelete.IsEnabled = WhiteboardTotalCount != 1;
+            WhiteboardModePreviousPageButtonEnabled = CurrentWhiteboardIndex > 1;
+            WhiteboardModeNextPageButtonEnabled = CurrentWhiteboardIndex < WhiteboardTotalCount;
+            WhiteboardModeNewPageButtonEnabled = WhiteboardTotalCount < 99;
+            WhiteboardModeNewPageButtonMerged = CurrentWhiteboardIndex == WhiteboardTotalCount;
         }
+
     }
 }

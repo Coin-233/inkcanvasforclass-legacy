@@ -511,8 +511,6 @@ namespace Ink_Canvas {
                 NibModeBoundsWidthSlider.Value = Settings.Advanced.NibModeBoundsWidth;
                 ToggleSwitchIsLogEnabled.IsOn = Settings.Advanced.IsLogEnabled;
 
-                ToggleSwitchIsSecondConfimeWhenShutdownApp.IsOn = Settings.Advanced.IsSecondConfirmWhenShutdownApp;
-
                 ToggleSwitchEraserBindTouchMultiplier.IsOn = Settings.Advanced.EraserBindTouchMultiplier;
 
                 ToggleSwitchIsSpecialScreen.IsOn = Settings.Advanced.IsSpecialScreen;

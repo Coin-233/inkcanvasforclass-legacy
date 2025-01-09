@@ -338,6 +338,7 @@ namespace Ink_Canvas {
             if (!isLoaded) return;
             Settings.PowerPointSettings.ShowPPTButton = ToggleSwitchShowPPTButton.IsOn;
             SaveSettingsToFile();
+            UpdatePPTBtnDisplaySettingsStatus();
             UpdatePPTBtnPreview();
         }
 

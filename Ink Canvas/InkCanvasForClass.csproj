@@ -217,6 +217,7 @@
     <Resource Include="Resources\Icons-png\Seewo2Annotation.png" />
     <Resource Include="Resources\Icons-png\setting.png" />
     <Resource Include="Resources\Icons-png\tiebahuaji.png" />
+    <Resource Include="Resources\Icons-png\osu.png" />
     <Resource Include="Resources\Icons-png\transparent-grid.png" />
     <Resource Include="Resources\Icons-png\undo.png" />
     <Resource Include="Resources\Icons-png\minimize.png" />
@@ -510,6 +511,7 @@
     <None Remove="Resources\Icons-png\MaxHubWhiteboard.png" />
     <None Remove="Resources\Icons-png\Seewo2Annotation.png" />
     <None Remove="Resources\Icons-png\tiebahuaji.png" />
+    <None Remove="Resources\Icons-png\osu.png" />
     <None Remove="Resources\Icons-png\transparent-grid.png" />
     <None Remove="Resources\Icons-png\VComYouJiao.png" />
     <None Remove="Resources\Icons-png\WenXiang.png" />

@@ -259,6 +259,10 @@ namespace Ink_Canvas {
                 FloatingbarHeadIconImg.Source =
                     new BitmapImage(new Uri("pack://application:,,,/Resources/Icons-png/tiebahuaji.png"));
                 FloatingbarHeadIconImg.Margin = new Thickness(2, 2, 2, 1);
+            } else if (ComboBoxFloatingBarImg.SelectedIndex == 8) {
+                FloatingbarHeadIconImg.Source =
+                    new BitmapImage(new Uri("pack://application:,,,/Resources/Icons-png/osu.png"));
+                FloatingbarHeadIconImg.Margin = new Thickness(0.5);
             }
             SaveSettingsToFile();
         }

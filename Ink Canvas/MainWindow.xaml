@@ -483,6 +483,8 @@
                                             <ComboBoxItem Content="酷安头戴内裤滑稽" FontFamily="Microsoft YaHei UI" />
                                             <ComboBoxItem Content="酷安绿帽Doge" FontFamily="Microsoft YaHei UI" />
                                             <ComboBoxItem Content="贴吧滑稽" FontFamily="Microsoft YaHei UI" />
+                                            <ComboBoxItem Content="OSU!" FontFamily="Microsoft YaHei UI" />
+                                            
                                         </ComboBox>
                                     </ui:SimpleStackPanel>
                                     <ui:SimpleStackPanel Orientation="Horizontal" HorizontalAlignment="Left">
